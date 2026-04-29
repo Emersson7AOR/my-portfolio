@@ -11,10 +11,6 @@ export default function Hero() {
       <div className={styles.glowBottom}></div>
       
       <div className={`container ${styles.heroContent}`}>
-        <div className={styles.badge}>
-          <span className={styles.pulse}></span>
-          Disponible para nuevos proyectos
-        </div>
         
         <h2 className={styles.greeting}>Hola, soy</h2>
         <h1 className={styles.name}>{personal.name}</h1>
