@@ -1,9 +1,10 @@
-import styles from "./page.module.css";
-
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <h1>Portfolio en construcción...</h1>
+    <main className="container" style={{ minHeight: "100vh", paddingTop: "100px" }}>
+      <section className="glass-panel" style={{ padding: "3rem", textAlign: "center" }}>
+        <h1 className="section-title">Portfolio en construcción...</h1>
+        <p>Preparando la sección Hero</p>
+      </section>
     </main>
   );
 }
