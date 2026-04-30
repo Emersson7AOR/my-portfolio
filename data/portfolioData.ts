@@ -1,7 +1,7 @@
 export const portfolioData = {
   personal: {
     name: "Emersson Rodrigo Álvarez Ordinola",
-    title: "Desarrollador Full-Stack & Software Médico",
+    title: "Desarrollador de Software",
     email: "rodrigoalvarezordinola@gmail.com",
     phone: "271-740-67-82",
     github: "https://github.com/EmerssonA7OR",
