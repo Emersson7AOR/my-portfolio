@@ -1,0 +1,319 @@
+.experienceSection {
+  padding: 8rem 0;
+  position: relative;
+  background: radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 40%);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  position: relative;
+  margin-top: 4rem;
+  padding-left: 2.5rem;
+}
+
+/* Vertical Line with Gradient */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    transparent, 
+    var(--accent-color) 10%, 
+    var(--accent-color) 90%, 
+    transparent
+  );
+  opacity: 0.3;
+}
+
+.timelineItem {
+  position: relative;
+  padding: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(15, 15, 15, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+}
+
+.timelineItem:hover {
+  background: rgba(20, 20, 20, 0.6);
+  border-color: rgba(14, 165, 233, 0.3);
+  box-shadow: 0 20px 40px -20px rgba(14, 165, 233, 0.2);
+}
+
+/* Glowing Dot */
+.timelineDot {
+  position: absolute;
+  top: 35px;
+  left: -46px; /* Centrado: -40px (padding) + 1px (centro línea) - 7px (mitad dot) */
+  width: 14px;
+  height: 14px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 15px var(--accent-color);
+}
+
+.timelineDot::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border: 2px solid rgba(14, 165, 233, 0.3);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.timelineContent {
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.role {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.company {
+  font-size: 1.1rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.period {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  border-radius: 20px;
+  color: var(--accent-color);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.descriptionFull {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  max-width: 90%;
+  display: block;
+}
+
+.descriptionShort {
+  display: none;
+}
+
+/* Carrusel de Imágenes Pulido */
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.carouselScroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Hide for clean look */
+}
+
+.carouselScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselItem {
+  min-width: 320px;
+  height: 200px;
+  border-radius: 12px;
+  scroll-snap-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.carouselItem:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+}
+
+.projectImage {
+  object-fit: cover;
+  transition: filter 0.3s ease;
+  filter: brightness(0.8);
+}
+
+.carouselItem:hover .projectImage {
+  filter: brightness(1.1);
+}
+
+/* Glassy gradient overlay on hover */
+.carouselItem::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carouselItem:hover::after {
+  opacity: 1;
+}
+
+/* Image Count Badge */
+.imageCount {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.imageCount svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-color);
+}
+
+.carouselFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.linkBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent-color);
+  color: white;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+}
+
+.linkBtn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+}
+
+.linkBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.carouselHint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
+
+.carouselHint::before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.1));
+}
+
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 1.5rem;
+    gap: 3rem;
+  }
+  
+  .timelineDot {
+    left: -30px; /* Centrado mvil: -24px (padding 1.5rem) + 1px - 7px */
+  }
+  
+  .timelineItem {
+    padding: 1.5rem;
+  }
+  
+  .role {
+    font-size: 1.4rem;
+  }
+  
+  .carouselItem {
+    min-width: 220px;
+    height: 140px;
+    border-radius: 8px;
+  }
+
+  .descriptionFull {
+    display: none;
+  }
+
+  .descriptionShort {
+    display: block;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+  }
+
+  .linkBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem;
+  }
+  
+  .imageCount {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
