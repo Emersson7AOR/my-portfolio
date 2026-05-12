@@ -3,48 +3,185 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
-  border-radius: 0;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+  height: 65px;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
 }
 
 .navContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  width: 100%;
 }
 
 .logo {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-decoration: none;
   letter-spacing: -0.5px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .logo span {
-  color: var(--accent-color);
+  color: var(--accent-primary, #0ea5e9);
 }
 
-.navLinks {
+.desktopNav {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 2.5rem;
 }
 
-.navLinks a {
-  font-size: 0.95rem;
+.navLink {
   color: var(--text-secondary);
-  transition: color 0.2s ease;
+  text-decoration: none;
+  font-size: 0.95rem;
   font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
 }
 
-.navLinks a:hover {
+.navLink:hover {
   color: var(--text-primary);
 }
 
-@media (max-width: 768px) {
-  .navLinks {
-    display: none; /* Add a hamburger menu here later if needed */
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-primary, #0ea5e9);
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.contactBtn {
+  padding: 0.6rem 1.2rem;
+  background: var(--accent-primary, #0ea5e9);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.contactBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  background: #0284c7;
+}
+
+/* Mobile Menu Button */
+.menuBtn {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+.bar {
+  width: 28px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.menuOpen .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menuOpen .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menuOpen .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Overlay */
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  z-index: 999;
+}
+
+.showMenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+}
+
+.showMenu .mobileNav {
+  transform: translateY(0);
+}
+
+.mobileNavLink {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.mobileContactBtn {
+  margin-top: 1rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  background: var(--accent-primary, #0ea5e9);
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 992px) {
+  .desktopNav {
+    display: none;
+  }
+  
+  .menuBtn {
+    display: flex;
   }
 }

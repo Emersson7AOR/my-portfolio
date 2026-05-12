@@ -1,21 +1,46 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useState, useEffect } from "react";
 import styles from "./ImageViewer.module.css";
 
 interface ImageViewerProps {
-  src: string;
+  images: string[];
+  initialIndex: number;
   onClose: () => void;
 }
 
-export default function ImageViewer({ src, onClose }: ImageViewerProps) {
+export default function ImageViewer({ images, initialIndex, onClose }: ImageViewerProps) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [zoom, setZoom] = useState(0.75);
   const [rotation, setRotation] = useState(0);
 
   const handleZoomIn = () => setZoom((prev) => Math.min(prev + 0.25, 3));
   const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.25, 0.5));
   const handleRotate = () => setRotation((prev) => (prev + 90) % 360);
+
+  const handlePrev = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    setZoom(0.75);
+    setRotation(0);
+  };
+
+  const handleNext = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    setZoom(0.75);
+    setRotation(0);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose, images.length]);
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -29,6 +54,13 @@ export default function ImageViewer({ src, onClose }: ImageViewerProps) {
         </svg>
       </button>
 
+      {/* Navegación Izquierda */}
+      <button className={`${styles.navBtn} ${styles.prevBtn}`} onClick={handlePrev}>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
       <div className={styles.viewerContainer} onClick={(e) => e.stopPropagation()}>
         <div 
           className={styles.imageWrapper}
@@ -37,22 +69,35 @@ export default function ImageViewer({ src, onClose }: ImageViewerProps) {
           }}
         >
           <img 
-            src={src} 
-            alt="Vista ampliada" 
+            src={images[currentIndex]} 
+            alt={`Vista ampliada ${currentIndex + 1}`} 
             className={styles.image}
             draggable={false}
           />
         </div>
       </div>
 
+      {/* Navegación Derecha */}
+      <button className={`${styles.navBtn} ${styles.nextBtn}`} onClick={handleNext}>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
       <div className={styles.controls} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.counter}>
+          {currentIndex + 1} / {images.length}
+        </div>
+        
+        <div className={styles.separator}></div>
+
         <button className={styles.controlBtn} onClick={handleZoomOut} title="Alejar">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
           </svg>
         </button>
         
-        <span style={{ color: 'white', minWidth: '40px', textAlign: 'center', lineHeight: '40px' }}>
+        <span className={styles.zoomLabel}>
           {Math.round(zoom * 100)}%
         </span>
 
@@ -62,7 +107,7 @@ export default function ImageViewer({ src, onClose }: ImageViewerProps) {
           </svg>
         </button>
 
-        <div style={{ width: '1px', background: 'rgba(255,255,255,0.2)', margin: '0 0.5rem' }}></div>
+        <div className={styles.separator}></div>
 
         <button className={styles.controlBtn} onClick={handleRotate} title="Rotar">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">

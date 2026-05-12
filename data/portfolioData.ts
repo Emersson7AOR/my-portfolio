@@ -99,19 +99,55 @@ export const portfolioData = {
   ],
   achievements: [
     {
-      title: "Pase a ExpoCiencias Nacional Tampico (2025)",
-      description: "Clasificación con el proyecto 'EMALI', plataforma para la detección temprana de Alzheimer.",
-      image: "" // Aquí podrás poner la ruta a la imagen del diploma después
+      title: "Proyecto EMALI",
+      institution: "CEIAT UNAM / ExpoCiencias",
+      year: "2024 - 2025",
+      description: "Plataforma para la detección temprana del Alzheimer mediante resonancia magnética y machine learning.",
+      highlights: [
+        "Publicado como artículo científico por el CEIAT de la UNAM.",
+        "Seleccionado para ponencia magistral.",
+        "Acreditación para la fase nacional de ExpoCiencias Tampico 2025."
+      ],
+      links: [
+        { label: "Ver Certificado", url: "https://drive.google.com/file/d/128ju2aOMdff_sFr4MZavjIbScIiO4v6H/view?usp=drive_link" }, // User said they have links, I'll use placeholders for now or wait for them
+        { label: "Acreditación", url: "https://drive.google.com/file/d/1jXAYRj1eCATPtCI1kFgkHfstRUZreQsq/view?usp=drive_link" }
+      ],
+      images: [
+        "/images/achievements/emali-xalapa.webp",
+        "/images/achievements/expo-cienciasRegional2025-2.webp",
+        "/images/achievements/stand-emali-tampico.webp",
+        "/images/achievements/initial-event-tampico.webp",
+        "/images/achievements/group-pretampico.webp"
+      ]
     },
     {
-      title: "Selección a Talent Land Jalisco (2025)",
-      description: "Reconocimiento obtenido por la continuación del proyecto 'CRISTAL'.",
-      image: ""
-    },
-    {
-      title: "Pase a ExpoCiencias Nacional Tabasco (2024)",
-      description: "Clasificación a fase nacional con el proyecto 'CRISTAL'.",
-      image: ""
+      title: "Proyecto CRISTAL",
+      institution: "UTCV / Talent Land / ExpoCiencias",
+      year: "2024 - 2025",
+      description: "Sistema gestor y predictivo de inventarios con machine learning para PyMES.",
+      highlights: [
+        "Segundo lugar en Expotecnologías UTCV.",
+        "Seleccionado para la fase nacional de ExpoCiencias Tabasco 2024.",
+        "Invitación a Talent Land Jalisco 2025.",
+        "Segundo lugar en Hackaton Talent Land."
+      ],
+      links: [
+        { label: "Acreditación Tabasco", url: "https://drive.google.com/file/d/1bUArhQ217v0TltCyrS-0mhE0_QPOYI4a/view?usp=drive_link" },
+        { label: "Acreditación Talent Land", url: "https://drive.google.com/file/d/18LjoLPgAwx1QDP7sbJHmJT2xROT6Yzqj/view?usp=drive_link" },
+        { label: "Certificado Expotecnologías", url: "https://drive.google.com/file/d/1seInn3VUzmJjCjbaPbELcif8rYGIV4F1/view?usp=drive_link" }
+      ],
+      images: [
+        "/images/achievements/cristal.webp",
+        "/images/achievements/stand-cristal-tabasco.webp",
+        "/images/achievements/expo-tecnologias-1.webp",
+        "/images/achievements/expo-tecnologias-2.webp",
+        "/images/achievements/expo-cienciasTabasco2.webp",
+        "/images/achievements/expo-cienciasTabasco3.webp",
+        "/images/achievements/expo-cienciasTabasco4.webp",
+        "/images/achievements/expo-cienciasTabasco5.webp",
+        "/images/achievements/expo-ciencias2024-1.webp",
+        "/images/achievements/expo-ciencias2024-2.webp"
+      ]
     }
   ],
   skills: {
