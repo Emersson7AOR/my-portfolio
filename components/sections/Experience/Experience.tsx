@@ -8,7 +8,7 @@ import ImageViewer from "@/components/ui/ImageViewer/ImageViewer";
 
 export default function Experience() {
   const { experience } = portfolioData;
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [viewerState, setViewerState] = useState<{ images: string[], index: number } | null>(null);
 
   return (
     <section id="experience" className={styles.experienceSection}>
@@ -46,7 +46,7 @@ export default function Experience() {
                         <div 
                           key={i} 
                           className={styles.carouselItem}
-                          onClick={() => setSelectedImage(img)}
+                          onClick={() => setViewerState({ images: exp.images, index: i })}
                           style={{ cursor: 'zoom-in' }}
                         >
                           <Image 
@@ -78,10 +78,11 @@ export default function Experience() {
         </div>
       </div>
 
-      {selectedImage && (
+      {viewerState && (
         <ImageViewer 
-          src={selectedImage} 
-          onClose={() => setSelectedImage(null)} 
+          images={viewerState.images} 
+          initialIndex={viewerState.index}
+          onClose={() => setViewerState(null)} 
         />
       )}
     </section>
