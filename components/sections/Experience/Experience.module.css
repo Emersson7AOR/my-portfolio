@@ -193,6 +193,33 @@
   opacity: 1;
 }
 
+/* Image Count Badge */
+.imageCount {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.imageCount svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-color);
+}
+
 .carouselFooter {
   display: flex;
   justify-content: flex-end;
@@ -282,5 +309,11 @@
     width: 100%;
     justify-content: center;
     padding: 0.8rem;
+  }
+  
+  .imageCount {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.3rem 0.6rem;
   }
 }
