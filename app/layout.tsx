@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Emersson Álvarez | Full-Stack & Medical Software",
+  title: "Emersson Álvarez | Mi Portafolio",
   description: "Portafolio de Emersson Rodrigo Álvarez Ordinola - Desarrollador de Software",
   icons: {
     icon: '/icons/icon-me-blue-circle-2.webp',

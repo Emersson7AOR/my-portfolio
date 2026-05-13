@@ -6,7 +6,7 @@
   --accent-hover: #0284c7;
   --glass-bg: rgba(25, 25, 25, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
-  
+
   --font-heading: var(--font-outfit), sans-serif;
   --font-body: var(--font-inter), sans-serif;
 }
@@ -34,7 +34,6 @@ a {
   text-decoration: none;
 }
 
-/* Utilities */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -53,17 +52,15 @@ a {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  /* Hardware acceleration */
   transform: translateZ(0);
   will-change: transform, opacity;
 }
 
 @media (max-width: 768px) {
   .glass-panel {
-    /* Reduce blur on mobile to improve performance */
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    background: rgba(25, 25, 25, 0.8); /* Slightly more opaque background as fallback for less blur */
+    background: rgba(25, 25, 25, 0.8);
   }
 }
 
