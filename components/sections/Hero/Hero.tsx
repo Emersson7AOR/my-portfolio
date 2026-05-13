@@ -24,9 +24,14 @@ export default function Hero() {
             <a href="#" className={styles.primaryBtn}>
               Descargar CV
             </a>
-            <Link href="#contact" className={styles.secondaryBtn}>
+            <a 
+              href="https://wa.me/522717406782" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={styles.secondaryBtn}
+            >
               Contáctame
-            </Link>
+            </a>
           </div>
         </div>
 
