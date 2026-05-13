@@ -89,12 +89,19 @@ export const portfolioData = {
   ],
   education: [
     {
-      degree: "Técnico Superior Universitario en Desarrollo de Software Multiplataforma",
-      institution: "Universidad Tecnológica del Centro de Veracruz (UTCV)"
+      degree: "Ingeniería de Software",
+      institution: "Universidad Tecnológica del Centro de Veracruz",
+      period: "2025 – 2026"
+    },
+    {
+      degree: "TSU en Desarrollo de Software Multiplataforma",
+      institution: "Universidad Tecnológica del Centro de Veracruz",
+      period: "2021 – 2025"
     },
     {
       degree: "Técnico en Ofimática",
-      institution: "Centro de Estudios Tecnológicos Industriales y de Servicios No. 143"
+      institution: "Centro de Estudios Tecnológicos Industriales y de Servicios No. 143",
+      period: "2018 - 2021"
     }
   ],
   achievements: [
