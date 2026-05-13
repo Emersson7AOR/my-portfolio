@@ -17,9 +17,9 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Sobre mí", href: "#about" },
     { name: "Experiencia", href: "#experience" },
     { name: "Logros", href: "#achievements" },
+    { name: "Sobre mí", href: "#about" },
     { name: "Educación", href: "#education" },
   ];
 

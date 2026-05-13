@@ -144,11 +144,8 @@
   gap: 1.5rem;
   padding-bottom: 1.5rem;
   scroll-snap-type: x mandatory;
-  scrollbar-width: none; /* Hide for clean look */
-}
-
-.carouselScroll::-webkit-scrollbar {
-  display: none;
+  scrollbar-width: none;
+  touch-action: pan-x; /* Optimization for mobile horizontal scrolling */
 }
 
 .carouselItem {
@@ -162,7 +159,18 @@
   background: #000;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  padding: 0;
+  cursor: zoom-in;
+  display: block;
+  z-index: 5;
+  touch-action: manipulation;
 }
+
+.carouselItem:active {
+  transform: scale(0.98);
+  border-color: var(--accent-color);
+}
+
 
 .carouselItem:hover {
   border-color: var(--accent-color);
@@ -280,6 +288,11 @@
   
   .timelineItem {
     padding: 1.5rem;
+  }
+
+  .timelineItem:hover {
+    transform: none;
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
   }
   
   .role {

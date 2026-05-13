@@ -42,21 +42,31 @@ export default function Experience() {
                       </div>
                     )}
                     <div className={styles.carouselScroll}>
-                      {exp.images.map((img, i) => (
-                        <div 
-                          key={i} 
-                          className={styles.carouselItem}
-                          onClick={() => setViewerState({ images: exp.images, index: i })}
-                          style={{ cursor: 'zoom-in' }}
-                        >
-                          <Image 
-                            src={img} 
-                            alt={`${exp.company} - Screenshot ${i + 1}`}
-                            fill
-                            className={styles.projectImage}
-                          />
-                        </div>
-                      ))}
+                      {exp.images.map((img, i) => {
+                        const handleOpen = (e: React.MouseEvent | React.PointerEvent) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setViewerState({ images: exp.images, index: i });
+                        };
+                        return (
+                          <button 
+                            key={i} 
+                            className={styles.carouselItem}
+                            onClick={handleOpen}
+                            onPointerUp={handleOpen}
+                            aria-label={`Ver imagen ${i + 1}`}
+                          >
+                            <Image 
+                              src={img} 
+                              alt={`${exp.company} - Screenshot ${i + 1}`}
+                              fill
+                              className={styles.projectImage}
+                              loading="eager"
+                              priority={i === 0}
+                            />
+                          </button>
+                        );
+                      })}
                     </div>
                     {exp.link ? (
                       <div className={styles.carouselFooter}>
