@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./Experience.module.css";
 import { portfolioData } from "@/data/portfolioData";
 import Image from "next/image";
@@ -9,6 +9,20 @@ import ImageViewer from "@/components/ui/ImageViewer/ImageViewer";
 export default function Experience() {
   const { experience } = portfolioData;
   const [viewerState, setViewerState] = useState<{ images: string[], index: number } | null>(null);
+  
+  // Array of refs for each project carousel
+  const scrollRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const scroll = (index: number, direction: 'left' | 'right') => {
+    const container = scrollRefs.current[index];
+    if (container) {
+      const scrollAmount = 350;
+      container.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <section id="experience" className={styles.experienceSection}>
@@ -41,33 +55,59 @@ export default function Experience() {
                         <span>{exp.images.length} fotos</span>
                       </div>
                     )}
-                    <div className={styles.carouselScroll}>
-                      {exp.images.map((img, i) => {
-                        const handleOpen = (e: React.MouseEvent | React.PointerEvent) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setViewerState({ images: exp.images, index: i });
-                        };
-                        return (
+                    
+                    <div className={styles.carouselWrapper}>
+                      {exp.images.length > 1 && (
+                        <>
                           <button 
-                            key={i} 
-                            className={styles.carouselItem}
-                            onClick={handleOpen}
-                            onPointerUp={handleOpen}
-                            aria-label={`Ver imagen ${i + 1}`}
+                            className={`${styles.navBtn} ${styles.prevBtn}`} 
+                            onClick={() => scroll(idx, 'left')}
+                            aria-label="Anterior"
                           >
-                            <Image 
-                              src={img} 
-                              alt={`${exp.company} - Screenshot ${i + 1}`}
-                              fill
-                              className={styles.projectImage}
-                              loading="eager"
-                              priority={i === 0}
-                            />
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 18l-6-6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                           </button>
-                        );
-                      })}
+                          <button 
+                            className={`${styles.navBtn} ${styles.nextBtn}`} 
+                            onClick={() => scroll(idx, 'right')}
+                            aria-label="Siguiente"
+                          >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5l6 6-6 6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                          </button>
+                        </>
+                      )}
+                      
+                      <div 
+                        className={styles.carouselScroll}
+                        ref={el => { scrollRefs.current[idx] = el; }}
+                      >
+                        {exp.images.map((img, i) => {
+                          const handleOpen = (e: React.MouseEvent | React.PointerEvent) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setViewerState({ images: exp.images, index: i });
+                          };
+                          return (
+                            <button 
+                              key={i} 
+                              className={styles.carouselItem}
+                              onClick={handleOpen}
+                              onPointerUp={handleOpen}
+                              aria-label={`Ver imagen ${i + 1}`}
+                            >
+                              <Image 
+                                src={img} 
+                                alt={`${exp.company} - Screenshot ${i + 1}`}
+                                fill
+                                className={styles.projectImage}
+                                loading="eager"
+                                priority={i === 0}
+                              />
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
+
                     {exp.link ? (
                       <div className={styles.carouselFooter}>
                         <a href={exp.link} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>
@@ -78,7 +118,7 @@ export default function Experience() {
                         </a>
                       </div>
                     ) : (
-                      <p className={styles.carouselHint}>Desliza para explorar los detalles →</p>
+                      <p className={styles.carouselHint}>Usa las flechas para explorar los detalles →</p>
                     )}
                   </div>
                 )}

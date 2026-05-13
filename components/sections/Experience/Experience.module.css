@@ -139,14 +139,67 @@
   margin-top: 2rem;
 }
 
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+}
+
 .carouselScroll {
   display: flex;
   overflow-x: auto;
   gap: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
   scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  touch-action: pan-x; /* Optimization for mobile horizontal scrolling */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  touch-action: pan-x;
+}
+
+.carouselScroll::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.navBtn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.navBtn:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+}
+
+.prevBtn { left: -20px; }
+.nextBtn { right: -20px; }
+
+@media (max-width: 768px) {
+  .navBtn {
+    display: none; /* Hide arrows on mobile, use touch scroll */
+  }
+  
+  .carouselScroll {
+    padding-bottom: 0;
+  }
 }
 
 .carouselItem {
@@ -214,28 +267,28 @@
 
 /* Image Count Badge */
 .imageCount {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  background: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 600;
-  z-index: 10;
-  pointer-events: none;
-  opacity: 0.8;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  color: var(--accent-color);
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+  padding: 0;
+  width: 100%;
+  opacity: 0.7;
 }
 
 .imageCount svg {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   color: var(--accent-color);
 }
 
@@ -255,15 +308,13 @@
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+  transition: all 0.2s ease;
 }
 
 @media (hover: hover) {
   .linkBtn:hover {
-    background: var(--accent-hover);
+    background: #0ea5e7;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
   }
 }
 
@@ -336,9 +387,4 @@
     padding: 0.8rem;
   }
   
-  .imageCount {
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.3rem 0.6rem;
-  }
 }

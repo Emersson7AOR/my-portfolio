@@ -15,7 +15,6 @@
   height: 65px;
   background: #050505; /* Solid background */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .navContainer {
@@ -89,7 +88,6 @@
 
 .contactBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
   background: #0284c7;
 }
 
