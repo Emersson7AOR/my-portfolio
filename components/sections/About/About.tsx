@@ -44,7 +44,6 @@ export default function About() {
         <h2 className="section-title">Stack Tecnológico & Ecosistema de Desarrollo</h2>
         
         <div className={styles.commandCenter}>
-          {/* Main Intelligence Hub */}
           <div className={`${styles.hub} glass-panel`}>
             <div className={styles.hubHeader}>
               <div className={styles.scanner}></div>
@@ -71,7 +70,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Functional Modules */}
           <div className={styles.modules}>
             <div className={`${styles.module} glass-panel`}>
               <div className={styles.moduleHeader}>

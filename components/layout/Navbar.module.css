@@ -7,13 +7,13 @@
   display: flex;
   align-items: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 9500; /* Higher than mobileOverlay (9000) */
+  z-index: 9500;
   border-bottom: 1px solid transparent;
 }
 
 .scrolled {
   height: 65px;
-  background: #050505; /* Solid background */
+  background: #050505;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -91,7 +91,6 @@
   background: #0284c7;
 }
 
-/* Mobile Menu Button */
 .menuBtn {
   display: none;
   flex-direction: column;
@@ -99,8 +98,8 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 20px; /* Much larger hit area */
-  margin-right: -10px; /* Adjust to keep visual alignment */
+  padding: 20px;
+  margin-right: -10px;
   z-index: 9999;
   -webkit-tap-highlight-color: transparent;
 }
@@ -124,7 +123,6 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Mobile Overlay */
 .mobileOverlay {
   position: fixed;
   top: 0;
@@ -138,7 +136,7 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 9000; /* Extremely high but below button */
+  z-index: 9000;
 }
 
 .showMenu {

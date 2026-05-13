@@ -26,7 +26,6 @@ export default function Education() {
           ))}
         </div>
 
-        {/* Specializing In (Terminal View) */}
         <div className={styles.terminal}>
           <div className={styles.terminalHeader}>
             <div className={styles.terminalDots}>

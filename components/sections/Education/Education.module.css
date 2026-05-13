@@ -16,7 +16,6 @@
   margin-right: auto;
 }
 
-/* Vertical Line with Gradient */
 .timeline::before {
   content: "";
   position: absolute;
@@ -51,11 +50,10 @@
   }
 }
 
-/* Glowing Dot */
 .timelineDot {
   position: absolute;
   top: 42px;
-  left: -46px; /* Centrado con la línea en 0 */
+  left: -46px;
   width: 14px;
   height: 14px;
   background-color: var(--accent-color);
@@ -135,7 +133,6 @@
   font-weight: 500;
 }
 
-/* Stagger animation */
 .timelineItem:nth-child(1) { animation-delay: 0.1s; }
 .timelineItem:nth-child(2) { animation-delay: 0.2s; }
 .timelineItem:nth-child(3) { animation-delay: 0.3s; }
@@ -163,22 +160,22 @@
   }
 
   .terminal {
-    margin-top: 4rem; /* Less space on mobile */
+    margin-top: 4rem;
     border-radius: 4px;
   }
 
   .terminalBody {
-    padding: 20px; /* Less padding */
-    min-height: 300px; /* Shorter */
+    padding: 20px;
+    min-height: 300px;
   }
 
   .line {
-    font-size: 0.85rem; /* Smaller text to fit prompt */
+    font-size: 0.85rem;
     margin-bottom: 15px;
   }
 
   .userHost {
-    display: inline-block; /* Help wrapping if needed */
+    display: inline-block;
   }
 
   .progressRow {
@@ -192,10 +189,9 @@
   }
 }
 
-/* Terminal View */
 .terminal {
   margin-top: 8rem;
-  background: #000; /* Pure black */
+  background: #000;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -207,7 +203,7 @@
 
 .terminalHeader {
   padding: 8px 16px;
-  background: #3c3c3c; /* Flat solid color, more Linux */
+  background: #3c3c3c;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,7 +236,7 @@
 
 .terminalBody {
   padding: 40px;
-  min-height: 450px; /* Much taller */
+  min-height: 450px;
   font-family: 'Ubuntu Mono', 'Consolas', monospace;
   color: #fff;
   background: #000;

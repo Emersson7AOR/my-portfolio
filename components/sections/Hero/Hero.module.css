@@ -121,7 +121,6 @@
   border-color: var(--text-secondary);
 }
 
-/* Image Styles */
 .heroImageWrapper {
   display: flex;
   justify-content: center;
@@ -232,7 +231,7 @@
   .imageContainer {
     max-width: 260px;
     padding: 6px;
-    animation-duration: 12s; /* Slower animation for less CPU usage */
+    animation-duration: 12s;
   }
 
   .actions {

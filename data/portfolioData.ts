@@ -33,7 +33,7 @@ export const portfolioData = {
         "/images/viewer/multi-site-viewer.webp",
         "/images/viewer/send-whatsapp3-viewer.webp"
       ],
-      link: "https://oneviewer-landing.oneclinic.com.mx/" // Enlace de ejemplo, ajusta si es necesario
+      link: "https://oneviewer-landing.oneclinic.com.mx/"
     },
     {
       role: "Desarrollador de Software",
@@ -117,7 +117,7 @@ export const portfolioData = {
         "Acreditación para la fase nacional de ExpoCiencias Tampico 2025."
       ],
       links: [
-        { label: "Ver Certificado", url: "https://drive.google.com/file/d/128ju2aOMdff_sFr4MZavjIbScIiO4v6H/view?usp=drive_link" }, // User said they have links, I'll use placeholders for now or wait for them
+        { label: "Ver Certificado", url: "https://drive.google.com/file/d/128ju2aOMdff_sFr4MZavjIbScIiO4v6H/view?usp=drive_link" },
         { label: "Acreditación", url: "https://drive.google.com/file/d/1jXAYRj1eCATPtCI1kFgkHfstRUZreQsq/view?usp=drive_link" }
       ],
       images: [

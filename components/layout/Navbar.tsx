@@ -42,7 +42,6 @@ export default function Navbar() {
           Emersson<span>.dev</span>
         </Link>
 
-        {/* Desktop Nav */}
         <nav className={styles.desktopNav}>
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href} className={styles.navLink}>
@@ -59,7 +58,6 @@ export default function Navbar() {
           </a>
         </nav>
 
-        {/* Mobile Menu Button */}
         <button 
           className={`${styles.menuBtn} ${isMenuOpen ? styles.menuOpen : ""}`} 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -72,7 +70,6 @@ export default function Navbar() {
       </div>
 
     </header>
-    {/* Mobile Nav Overlay moved outside header to avoid stacking context issues */}
     <div className={`${styles.mobileOverlay} ${isMenuOpen ? styles.showMenu : ""}`}>
       <nav className={styles.mobileNav}>
         {navLinks.map((link) => (

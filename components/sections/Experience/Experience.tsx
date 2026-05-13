@@ -10,7 +10,6 @@ export default function Experience() {
   const { experience } = portfolioData;
   const [viewerState, setViewerState] = useState<{ images: string[], index: number } | null>(null);
   
-  // Array of refs for each project carousel
   const scrollRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const scroll = (index: number, direction: 'left' | 'right') => {
