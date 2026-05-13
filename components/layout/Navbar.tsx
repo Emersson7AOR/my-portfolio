@@ -16,6 +16,17 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
+
   const navLinks = [
     { name: "Experiencia", href: "#experience" },
     { name: "Logros", href: "#achievements" },
@@ -24,6 +35,7 @@ export default function Navbar() {
   ];
 
   return (
+    <>
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.navContainer}`}>
         <Link href="/" className={styles.logo} onClick={() => setIsMenuOpen(false)}>
@@ -54,28 +66,29 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Nav Overlay */}
-      <div className={`${styles.mobileOverlay} ${isMenuOpen ? styles.showMenu : ""}`}>
-        <nav className={styles.mobileNav}>
-          {navLinks.map((link) => (
-            <Link 
-              key={link.href} 
-              href={link.href} 
-              className={styles.mobileNavLink}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
+    </header>
+    {/* Mobile Nav Overlay moved outside header to avoid stacking context issues */}
+    <div className={`${styles.mobileOverlay} ${isMenuOpen ? styles.showMenu : ""}`}>
+      <nav className={styles.mobileNav}>
+        {navLinks.map((link) => (
           <Link 
-            href="#contact" 
-            className={styles.mobileContactBtn}
+            key={link.href} 
+            href={link.href} 
+            className={styles.mobileNavLink}
             onClick={() => setIsMenuOpen(false)}
           >
-            Contacto
+            {link.name}
           </Link>
-        </nav>
-      </div>
-    </header>
+        ))}
+        <Link 
+          href="#contact" 
+          className={styles.mobileContactBtn}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Contacto
+        </Link>
+      </nav>
+    </div>
+    </>
   );
 }

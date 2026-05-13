@@ -19,9 +19,11 @@
   overflow: hidden;
 }
 
-.card:hover {
-  border-color: rgba(14, 165, 233, 0.4);
-  background: rgba(20, 20, 20, 0.5);
+@media (hover: hover) {
+  .card:hover {
+    border-color: rgba(14, 165, 233, 0.4);
+    background: rgba(20, 20, 20, 0.5);
+  }
 }
 
 .header {
@@ -125,9 +127,11 @@
   border: 1px solid rgba(14, 165, 233, 0.2);
 }
 
-.link:hover {
-  background: rgba(14, 165, 233, 0.2);
-  transform: translateX(3px);
+@media (hover: hover) {
+  .link:hover {
+    background: rgba(14, 165, 233, 0.2);
+    transform: translateX(3px);
+  }
 }
 
 .linkIcon {
