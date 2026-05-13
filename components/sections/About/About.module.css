@@ -1,6 +1,7 @@
 .aboutSection {
   padding: 100px 0;
   background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08), transparent 70%);
+  contain: content;
 }
 
 .commandCenter {
@@ -10,7 +11,6 @@
   margin-top: 40px;
 }
 
-/* Intelligence Hub */
 .hub {
   padding: 40px;
   display: flex;
@@ -53,11 +53,13 @@
 }
 
 .hubBody p {
-  font-size: 1.2rem;
-  line-height: 1.8;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
   color: var(--text-primary);
   margin-bottom: 40px;
   white-space: pre-wrap;
+  opacity: 0.9;
 }
 
 .hubFooter {
@@ -91,7 +93,6 @@
   color: var(--accent-color);
 }
 
-/* Modules */
 .modules {
   display: grid;
   grid-template-columns: 1fr;
@@ -103,9 +104,11 @@
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.module:hover {
-  transform: translateX(8px);
-  border-color: var(--accent-color);
+@media (hover: hover) {
+  .module:hover {
+    border-color: var(--accent-color);
+    background: rgba(14, 165, 233, 0.05);
+  }
 }
 
 .moduleHeader {
@@ -160,83 +163,6 @@
   color: var(--text-secondary);
 }
 
-/* Terminal View */
-.terminal {
-  grid-column: span 2;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.terminalHeader {
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.terminalDots {
-  display: flex;
-  gap: 6px;
-}
-
-.terminalDots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.terminalDots span:nth-child(1) { background: #ff5f56; }
-.terminalDots span:nth-child(2) { background: #ffbd2e; }
-.terminalDots span:nth-child(3) { background: #27c93f; }
-
-.terminalTitle {
-  font-family: monospace;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-}
-
-.terminalBody {
-  padding: 24px;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.line {
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-}
-
-.cmd {
-  color: #27c93f;
-  margin-right: 8px;
-}
-
-.roadmapGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 16px 0;
-  padding-left: 20px;
-}
-
-.roadmapItem {
-  color: #a1a1aa;
-}
-
-.bullet {
-  color: #27c93f;
-  margin-right: 8px;
-}
-
-.cursor {
-  display: inline-block;
-  width: 8px;
-  height: 16px;
-  background: #27c93f;
-  animation: blink 1s infinite;
-}
-
 @keyframes blink {
   50% { opacity: 0; }
 }
@@ -252,14 +178,35 @@
 }
 
 @media (max-width: 768px) {
+  .aboutSection {
+    padding: 60px 0;
+    background: rgba(14, 165, 233, 0.03);
+  }
+
+  .scanner::after {
+    animation-duration: 4s;
+  }
+
   .roadmapGrid {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
   
   .hub {
     padding: 24px;
   }
   
+  .hubBody p {
+    font-size: 1rem;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
   .metrics {
     grid-template-columns: 1fr;
   }

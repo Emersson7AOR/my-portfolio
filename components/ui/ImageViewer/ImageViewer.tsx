@@ -13,7 +13,7 @@ interface ImageViewerProps {
 export default function ImageViewer({ images, initialIndex, onClose }: ImageViewerProps) {
   const [mounted, setMounted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const [zoom, setZoom] = useState(1);
+  const [zoom, setZoom] = useState(0.75);
   const [rotation, setRotation] = useState(0);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -39,7 +39,7 @@ export default function ImageViewer({ images, initialIndex, onClose }: ImageView
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
-    setZoom(1);
+    setZoom(0.75);
     setRotation(0);
     setOffset({ x: 0, y: 0 });
   };
@@ -47,7 +47,7 @@ export default function ImageViewer({ images, initialIndex, onClose }: ImageView
   const handleNext = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
-    setZoom(1);
+    setZoom(0.75);
     setRotation(0);
     setOffset({ x: 0, y: 0 });
   };

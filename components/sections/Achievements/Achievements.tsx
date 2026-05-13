@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import styles from "./Achievements.module.css";
-import { portfolioData } from "../../data/portfolioData";
-import ImageViewer from "../ui/ImageViewer/ImageViewer";
+import { portfolioData } from "../../../data/portfolioData";
+import ImageViewer from "../../ui/ImageViewer/ImageViewer";
 
 export default function Achievements() {
   const { achievements } = portfolioData;

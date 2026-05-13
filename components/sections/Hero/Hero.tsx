@@ -21,12 +21,17 @@ export default function Hero() {
           <p className={styles.description}>{about}</p>
 
           <div className={styles.actions}>
-            <a href="#" className={styles.primaryBtn}>
+            <a href="https://drive.google.com/file/d/1bk05sgyhil5VvmFi95bqILZjWX9cFHI4/view?usp=sharing" className={styles.primaryBtn}>
               Descargar CV
             </a>
-            <Link href="#contact" className={styles.secondaryBtn}>
+            <a
+              href="https://wa.me/522717406782"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.secondaryBtn}
+            >
               Contáctame
-            </Link>
+            </a>
           </div>
         </div>
 
