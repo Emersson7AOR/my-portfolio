@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import styles from "./ImageViewer.module.css";
 
 interface ImageViewerProps {
@@ -10,40 +11,96 @@ interface ImageViewerProps {
 }
 
 export default function ImageViewer({ images, initialIndex, onClose }: ImageViewerProps) {
+  const [mounted, setMounted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const [zoom, setZoom] = useState(0.75);
+  const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
 
-  const handleZoomIn = () => setZoom((prev) => Math.min(prev + 0.25, 3));
-  const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.25, 0.5));
-  const handleRotate = () => setRotation((prev) => (prev + 90) % 360);
+  const handleZoomIn = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setZoom((prev) => Math.min(prev + 0.25, 3));
+  };
+
+  const handleZoomOut = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    const newZoom = Math.max(zoom - 0.25, 0.5);
+    setZoom(newZoom);
+    if (newZoom <= 1) setOffset({ x: 0, y: 0 });
+  };
+
+  const handleRotate = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setRotation((prev) => (prev + 90) % 360);
+  };
 
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
-    setZoom(0.75);
+    setZoom(1);
     setRotation(0);
+    setOffset({ x: 0, y: 0 });
   };
 
   const handleNext = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
-    setZoom(0.75);
+    setZoom(1);
     setRotation(0);
+    setOffset({ x: 0, y: 0 });
   };
 
+  const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
+    if (zoom <= 1) return;
+    setIsDragging(true);
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    setStartPos({ x: clientX - offset.x, y: clientY - offset.y });
+  };
+
+  const handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isDragging) return;
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    setOffset({
+      x: clientX - startPos.x,
+      y: clientY - startPos.y
+    });
+  };
+
+  const handleMouseUp = () => setIsDragging(false);
+
   useEffect(() => {
+    setMounted(true);
+    const originalStyles = {
+      overflow: document.body.style.overflow,
+      htmlOverflow: document.documentElement.style.overflow
+    };
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") handlePrev();
       if (e.key === "ArrowRight") handleNext();
       if (e.key === "Escape") onClose();
     };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    
+    return () => {
+      document.body.style.overflow = originalStyles.overflow;
+      document.documentElement.style.overflow = originalStyles.htmlOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [onClose, images.length]);
 
-  return (
-    <div className={styles.overlay} onClick={onClose}>
+  if (!mounted) return null;
+
+  return createPortal(
+    <div className={styles.overlay} onClick={onClose} onMouseUp={handleMouseUp} onTouchEnd={handleMouseUp}>
       <button 
         className={styles.closeBtn} 
         onClick={(e) => { e.stopPropagation(); onClose(); }}
@@ -54,18 +111,25 @@ export default function ImageViewer({ images, initialIndex, onClose }: ImageView
         </svg>
       </button>
 
-      {/* Navegación Izquierda */}
       <button className={`${styles.navBtn} ${styles.prevBtn}`} onClick={handlePrev}>
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
-      <div className={styles.viewerContainer} onClick={(e) => e.stopPropagation()}>
+      <div 
+        className={styles.viewerContainer} 
+        onClick={(e) => e.stopPropagation()}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onTouchStart={handleMouseDown}
+        onTouchMove={handleMouseMove}
+      >
         <div 
           className={styles.imageWrapper}
           style={{ 
-            transform: `scale(${zoom}) rotate(${rotation}deg)` 
+            transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom}) rotate(${rotation}deg)`,
+            transition: isDragging ? 'none' : undefined
           }}
         >
           <img 
@@ -77,7 +141,6 @@ export default function ImageViewer({ images, initialIndex, onClose }: ImageView
         </div>
       </div>
 
-      {/* Navegación Derecha */}
       <button className={`${styles.navBtn} ${styles.nextBtn}`} onClick={handleNext}>
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -115,6 +178,7 @@ export default function ImageViewer({ images, initialIndex, onClose }: ImageView
           </svg>
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

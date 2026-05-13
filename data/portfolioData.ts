@@ -7,7 +7,8 @@ export const portfolioData = {
     github: "https://github.com/EmerssonA7OR",
     facebook: "Emersson Rodrigo Álvarez"
   },
-  about: "Estudiante de Ingeniería de Software con enfoque en aplicaciones web de alto impacto. Especializado en el desarrollo de soluciones full-stack y visualización de datos complejos.",
+  about: "Ingeniero de Software con 1 año de experiencia en el desarrollo de aplicaciones web y la resolución de problemas técnicos. Mi trayectoria se centra en la construcción de sistemas escalables y la optimización de procesos, con resultados validados en proyectos premiados y publicaciones técnicas.",
+  aboutTechnical: "Mi trabajo se centra en desarrollar aplicaciones web completas que sean estables y fáciles de usar. Para la parte visual, utilizo React, Angular e Ionic, lo que me permite crear interfaces que funcionan bien tanto en computadoras como en celulares. Todo esto corre sobre un backend con Node.js y bases de datos en PostgreSQL o Supabase, asegurando que la información esté siempre organizada y segura.\n\nPara que el software siempre esté disponible, uso Docker y Cloudflare para gestionar el despliegue en servidores Linux o Windows. Además, me apoyo en herramientas de Inteligencia Artificial para escribir mejor código y resolver problemas técnicos de manera más rápida.",
   experience: [
     {
       role: "Desarrollador de Software Médico en equipo",
@@ -158,12 +159,11 @@ export const portfolioData = {
     }
   ],
   skills: {
-    medical: ["DICOM", "Orthanc PACS", "Cornerstone3D"],
-    frontend: ["Angular", "React", "Next.js", "Bootstrap", "Angular Material", "Ionic", "HTML5", "CSS3"],
-    backend: ["Node.js", "Express", "NestJS", "RESTful APIs"],
-    database: ["MySQL", "PostgreSQL", "MongoDB", "Firebase (Firestore)"],
-    languages: ["JavaScript", "TypeScript", "Python", "Java", "PHP"],
-    other: ["Docker", "Machine Learning", "Scrum", "Extreme Programming (XP)"]
+    frontend: ["React", "Angular", "Ionic"],
+    backend: ["Node.js", "Express", "PostgreSQL", "Supabase", "Firebase", "RESTful APIs"],
+    infrastructure: ["Cloudflare", "Docker", "Linux", "Windows"],
+    tools: ["Cursor", "Antigravity", "ClickUp", "Scrum", "XP"],
+    learning: ["NextJS", "NestJS", "Java (SpringBoot)", "Kotlin", "Python", "Ciberseguridad"]
   },
   aptitudes: [
     "Responsabilidad", "Trabajo en equipo", "Disponibilidad", "Adaptabilidad"

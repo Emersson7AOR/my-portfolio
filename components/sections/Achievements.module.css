@@ -152,6 +152,15 @@
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  padding: 0;
+  background: none;
+  display: block;
+  touch-action: manipulation;
+}
+
+.thumbnail:active {
+  transform: scale(0.95);
+  border-color: var(--accent-primary, #0ea5e9);
 }
 
 .thumbnail img {
@@ -165,7 +174,7 @@
   transform: scale(1.1);
 }
 
-.overlay {
+.thumbnailOverlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
@@ -174,9 +183,10 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-.thumbnail:hover .overlay {
+.thumbnail:hover .thumbnailOverlay {
   opacity: 1;
 }
 
@@ -195,6 +205,11 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
     width: 100%;
+  }
+
+  .card:hover {
+    transform: none;
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
   }
 
   .header {
@@ -242,6 +257,7 @@
     cursor: grab;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    touch-action: pan-x;
   }
 
   .gallery::-webkit-scrollbar {
@@ -261,6 +277,7 @@
     width: 65px;
     height: 45px;
     scroll-snap-align: start;
+    z-index: 5;
   }
 }
 
