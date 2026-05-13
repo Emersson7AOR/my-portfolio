@@ -7,16 +7,14 @@
   display: flex;
   align-items: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1000;
+  z-index: 9500;
   border-bottom: 1px solid transparent;
 }
 
 .scrolled {
   height: 65px;
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(12px);
-  border-color: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  background: #050505;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navContainer {
@@ -90,20 +88,20 @@
 
 .contactBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
   background: #0284c7;
 }
 
-/* Mobile Menu Button */
 .menuBtn {
   display: none;
   flex-direction: column;
   gap: 6px;
-  background: none;
+  background: transparent;
   border: none;
   cursor: pointer;
-  padding: 10px;
-  z-index: 1001;
+  padding: 20px;
+  margin-right: -10px;
+  z-index: 9999;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .bar {
@@ -125,19 +123,20 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Mobile Overlay */
 .mobileOverlay {
   position: fixed;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.98);
-  backdrop-filter: blur(10px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #050505;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.4s ease;
-  z-index: 999;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 9000;
 }
 
 .showMenu {
@@ -149,8 +148,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  transform: translateY(20px);
+  justify-content: center;
+  gap: 2.5rem;
+  width: 100%;
+  transform: translateY(30px);
   transition: transform 0.4s ease;
 }
 

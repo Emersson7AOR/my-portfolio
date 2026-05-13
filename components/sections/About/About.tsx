@@ -1,5 +1,5 @@
 import styles from "./About.module.css";
-import { portfolioData } from "../../data/portfolioData";
+import { portfolioData } from "../../../data/portfolioData";
 
 export default function About() {
   const { aboutTechnical, skills } = portfolioData;
@@ -41,10 +41,9 @@ export default function About() {
   return (
     <section id="about" className={styles.aboutSection}>
       <div className="container">
-        <h2 className="section-title">ADN de Desarrollador & Centro de Mando</h2>
+        <h2 className="section-title">Stack Tecnológico & Ecosistema de Desarrollo</h2>
         
         <div className={styles.commandCenter}>
-          {/* Main Intelligence Hub */}
           <div className={`${styles.hub} glass-panel`}>
             <div className={styles.hubHeader}>
               <div className={styles.scanner}></div>
@@ -71,7 +70,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Functional Modules */}
           <div className={styles.modules}>
             <div className={`${styles.module} glass-panel`}>
               <div className={styles.moduleHeader}>
@@ -103,27 +101,6 @@ export default function About() {
                 <h4>Agilidad Optimizada con IA</h4>
               </div>
               {renderIconStack(skills.tools)}
-            </div>
-          </div>
-
-          {/* Specializing In (Terminal View) */}
-          <div className={`${styles.terminal} glass-panel`}>
-            <div className={styles.terminalHeader}>
-              <div className={styles.terminalDots}>
-                <span></span><span></span><span></span>
-              </div>
-              <span className={styles.terminalTitle}>specialization_roadmap.sh</span>
-            </div>
-            <div className={styles.terminalBody}>
-              <div className={styles.line}><span className={styles.cmd}>$</span> specializing --list</div>
-              <div className={styles.roadmapGrid}>
-                {skills.learning.map((s, i) => (
-                  <div key={i} className={styles.roadmapItem}>
-                    <span className={styles.bullet}>▸</span> {s}
-                  </div>
-                ))}
-              </div>
-              <div className={styles.line}><span className={styles.cursor}>_</span></div>
             </div>
           </div>
         </div>
