@@ -30,7 +30,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Experiencia", href: "#experience" },
     { name: "Logros", href: "#achievements" },
-    { name: "Sobre mí", href: "#about" },
+    { name: "Stack", href: "#about" },
     { name: "Educación", href: "#education" },
   ];
 
@@ -49,9 +49,14 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Link href="#contact" className={styles.contactBtn}>
+          <a 
+            href="https://wa.me/522717406782" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className={styles.contactBtn}
+          >
             Contacto
-          </Link>
+          </a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -80,13 +85,15 @@ export default function Navbar() {
             {link.name}
           </Link>
         ))}
-        <Link 
-          href="#contact" 
+        <a 
+          href="https://wa.me/522717406782" 
+          target="_blank" 
+          rel="noopener noreferrer" 
           className={styles.mobileContactBtn}
           onClick={() => setIsMenuOpen(false)}
         >
           Contacto
-        </Link>
+        </a>
       </nav>
     </div>
     </>
