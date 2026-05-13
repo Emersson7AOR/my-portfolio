@@ -18,6 +18,9 @@ const inter = Inter({
 export const metadata = {
   title: "Emersson Álvarez | Full-Stack & Medical Software",
   description: "Portafolio de Emersson Rodrigo Álvarez Ordinola - Desarrollador de Software",
+  icons: {
+    icon: '/icons/icon-me-blue-circle-2.webp',
+  },
 };
 
 export default function RootLayout({
