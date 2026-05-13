@@ -36,13 +36,11 @@
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background: rgba(15, 15, 15, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
 }
 
 .timelineItem:hover {
   background: rgba(20, 20, 20, 0.6);
   border-color: rgba(14, 165, 233, 0.3);
-  box-shadow: 0 20px 40px -20px rgba(14, 165, 233, 0.2);
 }
 
 /* Glowing Dot */
@@ -89,6 +87,7 @@
 }
 
 .role {
+  font-family: var(--font-heading);
   font-size: 1.75rem;
   font-weight: 700;
   color: #fff;
@@ -291,8 +290,7 @@
   }
 
   .timelineItem:hover {
-    transform: none;
-    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+    border-color: rgba(14, 165, 233, 0.3);
   }
   
   .role {

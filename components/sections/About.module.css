@@ -1,6 +1,7 @@
 .aboutSection {
   padding: 100px 0;
   background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08), transparent 70%);
+  contain: content; /* Help browser optimize rendering */
 }
 
 .commandCenter {
@@ -53,11 +54,13 @@
 }
 
 .hubBody p {
-  font-size: 1.2rem;
-  line-height: 1.8;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
   color: var(--text-primary);
   margin-bottom: 40px;
   white-space: pre-wrap;
+  opacity: 0.9;
 }
 
 .hubFooter {
@@ -104,8 +107,8 @@
 }
 
 .module:hover {
-  transform: translateX(8px);
   border-color: var(--accent-color);
+  background: rgba(14, 165, 233, 0.05);
 }
 
 .moduleHeader {
@@ -199,7 +202,7 @@
 
 .terminalBody {
   padding: 24px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
 }
 
 .line {
@@ -252,14 +255,35 @@
 }
 
 @media (max-width: 768px) {
+  .aboutSection {
+    padding: 60px 0;
+    background: rgba(14, 165, 233, 0.03); /* Solid-ish fallback for heavy radial gradient */
+  }
+
+  .scanner::after {
+    animation-duration: 4s; /* Slower scan on mobile */
+  }
+
   .roadmapGrid {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
   
   .hub {
     padding: 24px;
   }
   
+  .hubBody p {
+    font-size: 1rem;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
   .metrics {
     grid-template-columns: 1fr;
   }
